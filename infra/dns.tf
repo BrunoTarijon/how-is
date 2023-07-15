@@ -30,6 +30,7 @@ resource "aws_apigatewayv2_domain_name" "howis" {
 
 resource "cloudflare_record" "how_is" {
   zone_id = data.cloudflare_zone.brunotarijon.id
+  proxied = true
   name    = aws_apigatewayv2_domain_name.howis.id
   value   = aws_apigatewayv2_domain_name.howis.domain_name_configuration[0].target_domain_name
   type    = "CNAME"
